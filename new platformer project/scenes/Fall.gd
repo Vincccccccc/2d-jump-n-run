@@ -1,6 +1,7 @@
 extends PlayerState
 
-
+func Enter(msg:={}):
+	animation_tree.set("parameters/Air/transition_request", "Fall")
 
 func Handle_input(event):
 	if event.is_action_pressed("jump"):
@@ -13,7 +14,7 @@ func Physics_update(delta):
 		if player.velocity.x == 0:
 			state_machine.transition_to("Idle")
 		else:
-			state_machine.transition_to("Move")
+			state_machine.transition_to("Run")
 			
 	player.velocity.y += player.fall_gravity * delta
 	

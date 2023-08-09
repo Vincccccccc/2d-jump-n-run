@@ -2,13 +2,14 @@ extends Node
 
 @export var initial_state: NodePath
 @onready var current_state: State = get_node(initial_state)
-
+@export var animation_tree: AnimationTree
 var current_state_name = "Idle"
 
 func _ready():
 	await owner.ready
 	for child in get_children():
 		child.state_machine = self
+		child.animation_tree = animation_tree
 		
 func _unhandled_input(event):
 	current_state.Handle_input(event)

@@ -1,5 +1,8 @@
 extends PlayerState
 
+func Enter(msg:={}):
+	animation_tree.set("parameters/Ground/transition_request", "Run")
+	
 func Handle_input(event):
 	
 	if event.is_action_pressed("jump"):
@@ -11,6 +14,7 @@ func Physics_update(delta):
 		player.jump_timer = 0.0
 		print("jump buff")		
 		state_machine.transition_to("Jump")
+		
 	if !Input.is_action_pressed("run_left") and !Input.is_action_pressed("run_right"):
 		state_machine.transition_to("Idle")
 	

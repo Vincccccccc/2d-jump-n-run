@@ -4,6 +4,7 @@ extends PlayerState
 
 func Enter(msg:= {}):
 	player.velocity.y = player.jump_velocity
+	animation_tree.set("parameters/Air/transition_request", "Jump")
 
 func Physics_update(delta):
 	
