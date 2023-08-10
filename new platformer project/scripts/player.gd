@@ -10,13 +10,17 @@ var jump_time_to_descent = 0.18
 var jump_height = 60
 var jump_timer: float = 0.0
 var is_jumping: bool = false
+var jump_buff = false
 
 var direction: float
 var max_speed = 500
 var accel = 3000
 var friction = 3000
 
-var jump_buff = false
+var crouch_max_speed = 200
+var crouch_accel = 2000
+var crouch_friction = 3000
+
 
 @onready var jump_velocity : float = ((2.0 * jump_height) / jump_time_to_peak) * -1.0
 @onready var jump_gravity : float = ((-2.0 * jump_height) / (jump_time_to_peak * jump_time_to_peak)) * -1.0

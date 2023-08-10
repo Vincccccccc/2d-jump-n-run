@@ -4,12 +4,14 @@ func Enter(msg:={}):
 	animation_tree.set("parameters/Ground/transition_request", "Idle")
 	
 func Handle_input(event):
+	
 	if event.is_action_pressed("run_left") or event.is_action_pressed("run_right"):
-		
 		state_machine.transition_to("Run")
 	if event.is_action_pressed("jump"):
 		player.jump_timer = 0.0
 		state_machine.transition_to("Jump")
+	if event.is_action_pressed("crouch"):
+		state_machine.transition_to("Crouch")
 		
 func Physics_update(delta):
 	

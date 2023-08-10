@@ -5,6 +5,8 @@ func Enter(msg:={}):
 	
 func Handle_input(event):
 	
+	if event.is_action_pressed("crouch"):
+		state_machine.transition_to("Crouch")
 	if event.is_action_pressed("jump"):
 		player.jump_timer = 0.0
 		state_machine.transition_to("Jump")

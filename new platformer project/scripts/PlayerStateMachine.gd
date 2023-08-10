@@ -15,13 +15,19 @@ func _unhandled_input(event):
 	current_state.Handle_input(event)
 
 func _physics_process(delta):
+	
 	current_state.Physics_update(delta)
 	
 func transition_to(new_state_name, msg:={}):
 	if not has_node(new_state_name):
 		return
+	
 	current_state.Exit()
 	current_state = get_node(new_state_name)
 	current_state_name = new_state_name
+	if current_state_name == "Idle" or current_state_name == "Run" or current_state_name == "Crouch":
+		animation_tree.set("parameters/in_air_state/transition_request", "Ground")
+	else:
+		animation_tree.set("parameters/in_air_state/transition_request", "Air")
 	current_state.Enter(msg)
 	
