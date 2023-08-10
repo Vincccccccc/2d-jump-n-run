@@ -8,10 +8,10 @@
 [ext_resource type="Script" path="res://scripts/PlayerStateMachine.gd" id="4_a32xq"]
 [ext_resource type="Texture2D" uid="uid://cfvfb4mxkno0c" path="res://SpriteSheetsPlayer/run cycle 48x48.png" id="4_ah45a"]
 [ext_resource type="Script" path="res://scripts/Idle.gd" id="5_ja0ug"]
-[ext_resource type="Script" path="res://scenes/Fall.gd" id="7_k4fsy"]
-[ext_resource type="Script" path="res://Run.gd" id="7_rpwic"]
-[ext_resource type="Script" path="res://scenes/Jump.gd" id="8_q2mgm"]
-[ext_resource type="Script" path="res://scenes/Crouch.gd" id="11_f4oq0"]
+[ext_resource type="Script" path="res://scripts/Run.gd" id="9_rgkmu"]
+[ext_resource type="Script" path="res://scripts/Fall.gd" id="10_u7kk4"]
+[ext_resource type="Script" path="res://Jump.gd" id="11_agtyx"]
+[ext_resource type="Script" path="res://scripts/Crouch.gd" id="12_5t0lg"]
 
 [sub_resource type="Animation" id="Animation_lp8vd"]
 length = 1.25
@@ -599,7 +599,7 @@ texture_filter = 1
 position = Vector2(-6.85715, -16)
 sprite_frames = SubResource("SpriteFrames_6884d")
 animation = &"Crouch"
-frame_progress = 0.400118
+frame_progress = 0.245071
 
 [node name="PlayerStateMachine" type="Node" parent="." node_paths=PackedStringArray("animation_tree")]
 script = ExtResource("4_a32xq")
@@ -610,16 +610,16 @@ animation_tree = NodePath("../AnimationTree")
 script = ExtResource("5_ja0ug")
 
 [node name="Run" type="Node" parent="PlayerStateMachine"]
-script = ExtResource("7_rpwic")
+script = ExtResource("9_rgkmu")
 
 [node name="Fall" type="Node" parent="PlayerStateMachine"]
-script = ExtResource("7_k4fsy")
+script = ExtResource("10_u7kk4")
 
 [node name="Jump" type="Node" parent="PlayerStateMachine"]
-script = ExtResource("8_q2mgm")
+script = ExtResource("11_agtyx")
 
 [node name="Crouch" type="Node" parent="PlayerStateMachine"]
-script = ExtResource("11_f4oq0")
+script = ExtResource("12_5t0lg")
 
 [node name="Label" type="Label" parent="."]
 visible = false
@@ -645,5 +645,16 @@ parameters/Ground/current_index = 0
 parameters/in_air_state/current_state = "Ground"
 parameters/in_air_state/transition_request = ""
 parameters/in_air_state/current_index = 1
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(-1.71429, -22.2857)
+zoom = Vector2(1.25, 1.25)
+limit_left = 0
+position_smoothing_enabled = true
+position_smoothing_speed = 10.0
+drag_horizontal_enabled = true
+drag_vertical_enabled = true
+drag_left_margin = 0.1
+drag_right_margin = 0.1
 
 [connection signal="timeout" from="jump_buff" to="." method="_on_jump_buff_timeout"]
