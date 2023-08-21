@@ -10,6 +10,14 @@ func Handle_input(event):
 		
 	
 func Physics_update(delta):
+	if bottom_raycast.is_colliding() and !top_raycast.is_colliding():
+		if player.direction < 0:
+			if Input.is_action_pressed("run_left"):
+				state_machine.transition_to("Wall_hang")
+		elif player.direction > 0:
+			if Input.is_action_pressed("run_right"):
+				state_machine.transition_to("Wall_hang")
+	
 	if player.is_on_floor():
 		if player.velocity.x == 0:
 			state_machine.transition_to("Idle")

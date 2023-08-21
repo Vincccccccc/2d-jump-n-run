@@ -4,11 +4,16 @@ extends PlayerState
 
 func Enter(msg:= {}):
 	player.velocity.y = player.jump_velocity
-	
 	animation_tree.set("parameters/Air/transition_request", "Jump")
-
-func Physics_update(delta):
 	
+func Physics_update(delta):
+	if bottom_raycast.is_colliding() and !top_raycast.is_colliding():
+		if player.direction < 0:
+			if Input.is_action_pressed("run_left"):
+				state_machine.transition_to("Wall_hang")
+		elif player.direction > 0:
+			if Input.is_action_pressed("run_right"):
+				state_machine.transition_to("Wall_hang")
 	
 	player.jump_timer += delta
 	

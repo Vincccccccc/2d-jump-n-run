@@ -1,8 +1,13 @@
 extends Node
 
-@export var initial_state: NodePath
+
 @onready var current_state: State = get_node(initial_state)
+@export var initial_state: NodePath
 @export var animation_tree: AnimationTree
+@export var animated_sprite: AnimatedSprite2D
+@export var top_raycast: RayCast2D
+@export var bottom_raycast: RayCast2D
+
 var current_state_name = "Idle"
 
 func _ready():
@@ -10,6 +15,9 @@ func _ready():
 	for child in get_children():
 		child.state_machine = self
 		child.animation_tree = animation_tree
+		child.animated_sprite = animated_sprite
+		child.top_raycast = top_raycast
+		child.bottom_raycast = bottom_raycast
 		
 func _unhandled_input(event):
 	current_state.Handle_input(event)

@@ -2,6 +2,8 @@ extends PlayerState
 
 func Enter(msg:={}):
 	animation_tree.set("parameters/Ground/transition_request", "Idle")
+	top_raycast.enabled = true
+	bottom_raycast.enabled = true
 	
 func Handle_input(event):
 	
