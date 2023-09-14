@@ -1,4 +1,4 @@
-[gd_scene load_steps=82 format=3 uid="uid://dgqlrmpisjvor"]
+[gd_scene load_steps=81 format=3 uid="uid://dgqlrmpisjvor"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_vqisy"]
 [ext_resource type="Texture2D" uid="uid://d4f748fjkq5vv" path="res://120x80_PNGSheets/_Crouch.png" id="2_ebnk3"]
@@ -44,6 +44,18 @@ tracks/1/keys = {
 "update": 1,
 "values": ["Crouch"]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CollisionPolygon2D:polygon")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [PackedVector2Array(0.629596, -7.12861, 0.896091, -7.15523, 0.896091, -7.14858, 1.53568, -7.06872, 1.85547, -6.86907, 1.80217, -6.76924, 1.53568, -6.54963, -1.28917, -6.54964, -0.969375, -6.80917, -0.809478, -6.92896, -0.649581, -7.00217)]
+}
 
 [sub_resource type="Animation" id="Animation_u8ec5"]
 length = 1.6
@@ -72,6 +84,18 @@ tracks/1/keys = {
 "update": 1,
 "values": ["Crouch_walk"]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CollisionPolygon2D:polygon")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [PackedVector2Array(0.629596, -7.12861, 0.896091, -7.15523, 0.896091, -7.14858, 1.53568, -7.06872, 1.85547, -6.86907, 1.80217, -6.76924, 1.53568, -6.54963, -1.28917, -6.54964, -0.969375, -6.80917, -0.809478, -6.92896, -0.649581, -7.00217)]
+}
 
 [sub_resource type="Animation" id="Animation_wr722"]
 length = 0.3
@@ -99,6 +123,18 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": ["Fall"]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CollisionPolygon2D:polygon")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [PackedVector2Array(0.0966056, -7.41478, 0.789493, -7.41478, 0.896091, -7.14858, 0.94939, -7.02213, 0.896091, -6.86907, 0.896091, -6.78255, 0.842792, -6.54963, -1.28917, -6.54964, -0.969375, -6.80917, -0.809478, -6.92896, -0.70288, -7.18185), PackedVector2Array(0.0966056, -7.41478, 0.789493, -7.41478, 0.896091, -7.14858, 0.94939, -7.02213, 0.896091, -6.86907, 0.896091, -6.78255, 0.842792, -6.54963, -1.28917, -6.54964, -0.969375, -6.80917, -0.809478, -6.92896, -0.70288, -7.18185)]
 }
 
 [sub_resource type="Animation" id="Animation_kghkx"]
@@ -235,34 +271,6 @@ tracks/2/keys = {
 "values": [PackedVector2Array(0.0966056, -7.41478, 0.789493, -7.41478, 1.00269, -7.14858, 1.00269, -7.00882, 1.05599, -6.88903, 1.05599, -6.78921, 1.69557, -6.54964, -1.28917, -6.54964, -0.969375, -6.80917, -0.809478, -6.92896, -0.383086, -7.14858)]
 }
 
-[sub_resource type="Animation" id="Animation_ybrsp"]
-length = 1.4
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("AnimatedSprite2D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8, 1, 1.2),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
-"update": 1,
-"values": [0, 1, 2, 3, 4, 5, 6]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("AnimatedSprite2D:animation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": ["Wall_climb"]
-}
-
 [sub_resource type="Animation" id="Animation_4wapk"]
 length = 0.2
 loop_mode = 1
@@ -300,7 +308,6 @@ _data = {
 "Jump": SubResource("Animation_med63"),
 "RESET": SubResource("Animation_xs1b3"),
 "Run": SubResource("Animation_kjcra"),
-"Wall_climb": SubResource("Animation_ybrsp"),
 "Wall_hang": SubResource("Animation_4wapk")
 }
 
@@ -729,12 +736,6 @@ animations = [{
 scale = Vector2(3.5, 3.5)
 script = ExtResource("1_vqisy")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-speed_scale = 0.0
-libraries = {
-"": SubResource("AnimationLibrary_oh1xr")
-}
-
 [node name="PlayerStateMachine" type="Node" parent="." node_paths=PackedStringArray("animation_tree", "animated_sprite", "top_raycast", "bottom_raycast")]
 script = ExtResource("4_a32xq")
 initial_state = NodePath("Idle")
@@ -764,13 +765,19 @@ script = ExtResource("8_sgot8")
 [node name="Label" type="Label" parent="."]
 texture_filter = 1
 offset_left = -27.1429
-offset_top = -48.5714
+offset_top = -49.1429
 offset_right = 17.8571
-offset_bottom = -22.5714
+offset_bottom = -23.1429
 text = "dddd"
 
 [node name="jump_buff" type="Timer" parent="."]
 wait_time = 0.1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+speed_scale = 0.0
+libraries = {
+"": SubResource("AnimationLibrary_oh1xr")
+}
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
 tree_root = SubResource("AnimationNodeBlendTree_euw85")
@@ -799,7 +806,7 @@ drag_right_margin = 0.1
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_0x46n")
-animation = &"Jump"
+animation = &"Crouch"
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 position = Vector2(-1.66072, 301.192)
@@ -813,7 +820,7 @@ collide_with_areas = true
 
 [node name="Bottom_raycast" type="RayCast2D" parent="."]
 position = Vector2(-1.14286, -12)
-target_position = Vector2(9.14286, 0)
+target_position = Vector2(12.5714, 0)
 collide_with_areas = true
 
 [connection signal="timeout" from="jump_buff" to="." method="_on_jump_buff_timeout"]

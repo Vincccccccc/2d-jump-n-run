@@ -13,6 +13,8 @@ var jump_height = 60
 var jump_timer: float = 0.0
 var is_jumping: bool = false
 var jump_buff = false
+var wall_hanging = false
+var can_wall_hang = false
 
 var direction: float
 var max_speed = 500
@@ -35,19 +37,14 @@ func _ready():
 	print(animation_tree)
 	
 func _physics_process(_delta):
-	
-	if Input.is_action_just_pressed("run_left"):
-		animated_sprite.flip_h = true
-		bottom_raycast.rotation_degrees = 180
-		top_raycast.rotation_degrees = 180
-		
-	elif Input.is_action_just_pressed("run_right"):
-		animated_sprite.flip_h = false
-		bottom_raycast.rotation = 0
-		top_raycast.rotation = 0
-		
-	label.text = state_machine.current_state_name
+	if !top_raycast.is_colliding() and bottom_raycast.is_colliding():
+		can_wall_hang = true
+	else: 
+		can_wall_hang = false
+	label.text = str(velocity)
 	direction = Input.get_axis("run_left", "run_right")
+	if direction == 1 or direction == -1 and !wall_hanging:
+		scale.x = scale.y * direction
 	move_and_slide()
 
 

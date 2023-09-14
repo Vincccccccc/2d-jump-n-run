@@ -9,12 +9,13 @@ func Enter(msg:= {}):
 func Physics_update(delta):
 	if bottom_raycast.is_colliding() and !top_raycast.is_colliding():
 		if player.direction < 0:
-			if Input.is_action_pressed("run_left"):
-				state_machine.transition_to("Wall_hang")
+			player.velocity = Vector2.ZERO
+			state_machine.transition_to("Wall_hang")
+			return
 		elif player.direction > 0:
-			if Input.is_action_pressed("run_right"):
-				state_machine.transition_to("Wall_hang")
-	
+			player.velocity = Vector2.ZERO
+			state_machine.transition_to("Wall_hang")
+			return
 	player.jump_timer += delta
 	
 	if Input.is_action_pressed("jump") and player.jump_timer < player.jump_time_to_peak:

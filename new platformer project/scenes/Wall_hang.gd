@@ -3,6 +3,7 @@ extends PlayerState
 func Enter(msg:={}):
 	animation_tree.set("parameters/Air/transition_request", "Wall_hang")
 	player.velocity = Vector2.ZERO
+	player.wall_hanging = true
 
 func Physics_update(delta):
 	player.velocity = Vector2.ZERO
@@ -13,3 +14,5 @@ func Handle_input(event):
 		bottom_raycast.enabled = false
 		player.jump_timer = 0.0
 		state_machine.transition_to("Jump")
+func Exit():
+	player.wall_hanging = false
